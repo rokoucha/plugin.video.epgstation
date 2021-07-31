@@ -9,7 +9,7 @@ import datetime
 import simplejson as json
 import urllib.request, urllib.error, urllib.parse
 import requestutil
-from urllib.parse import urljoin
+from urllib.parse import urljoin, quote
 from consts import *
 
 addon_handle = int(sys.argv[1])
@@ -87,7 +87,7 @@ if __name__ == '__main__':
         settings.openSettings()
         server_url = settings.getSetting('server_url')
 
-    requestInfo = requestutil.getRequestInfo(server_url, user_agent)
+    requestInfo = requestutil.getRequestInfo(server_url, quote(user_agent))
 
     request = urllib.request.Request(url=urljoin(requestInfo["url"], 'api/recorded?isHalfWidth=true&limit=' + str(recorded_length) + '&offset=0'), headers=requestInfo["headers"])
     response = urllib.request.urlopen(request)
