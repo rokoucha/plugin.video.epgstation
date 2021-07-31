@@ -22,7 +22,7 @@ xbmcplugin.setContent(addon_handle, 'movies')
 def addList(video, server_url, user_agent):
     li = xbmcgui.ListItem(video['name'])
     if video['thumbnails']:
-        thumbnail_url = urljoin(server_url, 'api/thumbnails/' + str(video['thumbnails'][0])) + '|User-Agent=' + user_agent
+        thumbnail_url = urljoin(server_url, 'api/thumbnails/' + str(video['thumbnails'][0])) + '|user-agent=' + user_agent
         li.setArt({
             'poster': thumbnail_url,
             'fanart': thumbnail_url,
@@ -72,7 +72,7 @@ def addList(video, server_url, user_agent):
         ('削除', 'RunScript(%s/delete.py, %d, %s)' % (settings.getAddonInfo('path'), video['id'], video['name']))
     ])
 
-    video_url = urljoin(server_url, 'api/videos/' + str(video['videoFiles'][0]['id'])) + '|User-Agent=' + user_agent
+    video_url = urljoin(server_url, 'api/videos/' + str(video['videoFiles'][0]['id'])) + '|user-agent=' + user_agent
     # if video['original'] == False and 'encoded' in video and len(video['encoded']) > 0:
     #     video_url += '?encodedId=' + str(video['encoded'][0]['encodedId'])
 
