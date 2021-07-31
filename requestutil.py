@@ -4,10 +4,12 @@
 import re
 
 # urllib2.Request で開く url と headers を生成する
-def getUrlInfo(server_url):
+def getRequestInfo(server_url, user_agent):
     result = {
         "url": None,
-        "headers": {}
+        "headers": {
+            "User-Agent": user_agent
+        }
     }
     match = re.search(r"^(http|https)://(.+):(.+)@(.+)", server_url)
 

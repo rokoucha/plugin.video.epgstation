@@ -5,7 +5,7 @@ import xbmc, xbmcgui, xbmcaddon
 import os
 import sys
 import urllib.request, urllib.error, urllib.parse
-import urlutil
+import requestutil
 from urllib.parse import urljoin
 
 settings = xbmcaddon.Addon('plugin.video.epgstation')
@@ -13,6 +13,7 @@ plugin = settings.getAddonInfo('name')
 
 if __name__ == '__main__' and len(sys.argv) == 3:
     server_url = settings.getSetting('server_url')
+    user_agent = settings.getSetting('user_agent')
     videoId = sys.argv[1];
     fileName = sys.argv[2];
     opener = urllib.request.build_opener(urllib.request.HTTPHandler)
@@ -24,8 +25,8 @@ if __name__ == '__main__' and len(sys.argv) == 3:
         progress.update(0)
 
         try:
-            urlInfo = urlutil.getUrlInfo(server_url)
-            req = urllib.request.Request(url=urljoin(urlInfo["url"], 'api/recorded/' + str(videoId)), headers=urlInfo["headers"])
+            requestInfo = requestutil.getRequestInfo(server_url, user_agent)
+            req = urllib.request.Request(url=urljoin(requestInfo["url"], 'api/recorded/' + str(videoId)), headers=requestInfo["headers"])
             req.get_method = lambda: 'DELETE'
             url = opener.open(req)
         except:
