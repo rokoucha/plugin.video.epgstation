@@ -4,5 +4,6 @@
     <category label="30200">
         <setting id="server_url" type="text" label="30201" default="" />
         <setting id="recorded_length" type="text" label="30202" default=1000 />
+        <setting id="user_agent" type="text" label="30203" default="plugin.video.epgstation/0.0.1" />
     </category>
 </settings>

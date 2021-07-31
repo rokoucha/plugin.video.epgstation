@@ -24,3 +24,7 @@ msgstr "EPGStation URL"
 msgctxt "#30202"
 msgid "表示上限"
 msgstr "表示上限"
+
+msgctxt "#30203"
+msgid "ユーザーエージェント"
+msgstr "ユーザーエージェント"
